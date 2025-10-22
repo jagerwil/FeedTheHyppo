@@ -1,0 +1,3 @@
+[submodule "Assets/!Thirdparty/ZenjectCoreArchitecture"]
+	path = Assets/!Thirdparty/ZenjectCoreArchitecture
+	url = https://github.com/jagerwil/ZenjectCoreArchitecture
