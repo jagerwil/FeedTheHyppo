@@ -63,7 +63,6 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         }
 
         private void InteractPerformed(InputAction.CallbackContext ctx) {
-            Debug.Log($"<color=#6BFF5E>Interact performed!</color>");
             OnInteractButtonPressed?.Invoke();
         }
         #endregion

@@ -17,6 +17,7 @@ namespace FeedTheHyppo.Architecture.Installers {
         private void BindServices() {
             Container.Bind<IAddressablesLoader>().To<AddressablesLoader>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            Container.Bind<IWindowService>().To<WindowService>().AsSingle();
         }
 
         private void BindGameStateMachine() {

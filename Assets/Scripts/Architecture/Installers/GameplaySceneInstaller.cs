@@ -54,6 +54,8 @@ namespace FeedTheHyppo.Architecture.Installers {
         private void BindGameStates() {
             Container.Bind<GameplayInitializationState>().AsSingle();
             Container.Bind<GameplayMainState>().AsSingle();
+            Container.Bind<GameplayGameOverState>().AsSingle();
+            Container.Bind<GameplayRestartState>().AsSingle();
         }
 
         private void BindInitializer() {
