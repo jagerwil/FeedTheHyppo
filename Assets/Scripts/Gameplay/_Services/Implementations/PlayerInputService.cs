@@ -7,13 +7,6 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay._Services.Implementations {
     public class PlayerInputService : IPlayerInputService, ITickable {
-        #region Events
-        public ReadOnlyReactiveProperty<Vector2> MoveVector => _moveVector;
-        public ReadOnlyReactiveProperty<Vector2> DeltaLookVector => _deltaLookVector;
-        
-        public event Action OnInteractButtonPressed;
-        #endregion
-        
         #region Readonly Fields
         private readonly PlayerConfig _playerConfig;
         private readonly InputActions _inputActions;
@@ -22,6 +15,14 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         private readonly ReactiveProperty<Vector2> _deltaLookVector = new();
         #endregion
 
+        #region Events
+        public ReadOnlyReactiveProperty<Vector2> MoveVector => _moveVector;
+        public ReadOnlyReactiveProperty<Vector2> DeltaLookVector => _deltaLookVector;
+        
+        public event Action OnInteractButtonPressed;
+        #endregion
+        
+        
         public PlayerInputService(PlayerConfig playerConfig) {
             _playerConfig = playerConfig;
             _inputActions = new InputActions();
@@ -35,6 +36,7 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
             _inputActions.Player.Interact.performed += InteractPerformed;
         }
 
+        
         #region Public Methods
         public void Tick() {
             var pointerValue = _inputActions.Player.LookPointer.ReadValue<Vector2>();

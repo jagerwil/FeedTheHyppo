@@ -3,8 +3,8 @@ using R3;
 using UnityEngine;
 using Zenject;
 
-namespace FeedTheHyppo.Gameplay.Player {
-    [RequireComponent(typeof(PlayerMovement), typeof(PlayerLookAround), typeof(PlayerItemInteraction))]
+namespace FeedTheHyppo.Gameplay.PlayerComponents {
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerLookAround), typeof(PlayerInteraction))]
     public class PlayerInputController : MonoBehaviour {
         #region Readonly Fields
         private readonly CompositeDisposable _disposables = new();
@@ -15,16 +15,11 @@ namespace FeedTheHyppo.Gameplay.Player {
         
         private PlayerMovement _playerMovement;
         private PlayerLookAround _playerLookAround;
-        private PlayerItemInteraction _playerItemInteraction;
+        private PlayerInteraction _playerInteraction;
         #endregion
 
         
         #region Unity Callbacks
-        private void Awake() {
-            _playerMovement = GetComponent<PlayerMovement>();
-            _playerLookAround = GetComponent<PlayerLookAround>();
-            _playerItemInteraction = GetComponent<PlayerItemInteraction>();
-        }
 
         private void Start() {
             _inputService.MoveVector
@@ -45,6 +40,16 @@ namespace FeedTheHyppo.Gameplay.Player {
             _disposables?.Dispose();
         }
         #endregion
+        
+        
+        #region Public Methods
+        public void Initialize(PlayerMovement movement, PlayerLookAround lookAround, 
+            PlayerInteraction interaction) {
+            _playerMovement = movement;
+            _playerLookAround = lookAround;
+            _playerInteraction = interaction;
+        }
+        #endregion
 
         
         #region Private Methods
@@ -57,7 +62,7 @@ namespace FeedTheHyppo.Gameplay.Player {
         }
 
         private void InteractButtonPressed() {
-            _playerItemInteraction.Interact();
+            _playerInteraction.Interact();
         }
         #endregion
     }

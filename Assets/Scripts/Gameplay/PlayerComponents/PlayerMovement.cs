@@ -1,18 +1,20 @@
-using System;
 using FeedTheHyppo.Configs;
 using UnityEngine;
 using Zenject;
 
-namespace FeedTheHyppo.Gameplay.Player {
+namespace FeedTheHyppo.Gameplay.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {
-        [SerializeField] private Rigidbody _rigidbody;
-        
         [Inject] private PlayerConfig _playerConfig;
         
+        private Rigidbody _rigidbody;
         private Vector3 _moveVector;
 
         private void FixedUpdate() {
-            _rigidbody.linearVelocity = _moveVector * _playerConfig.MoveSpeed;
+            _rigidbody.linearVelocity = _rigidbody.rotation * (_moveVector * _playerConfig.MoveSpeed);
+        }
+
+        public void Initialize(Rigidbody rb) {
+            _rigidbody = rb;
         }
 
         public void SetMoveVector(Vector2 moveVector) {

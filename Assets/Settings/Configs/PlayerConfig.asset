@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3158934765ac6704194fa44129c7e830, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.PlayerInputConfig
-  <DefaultLookSensitivity>k__BackingField: 1
+  <DefaultLookSensitivity>k__BackingField: 0.5
   <MoveSpeed>k__BackingField: 5

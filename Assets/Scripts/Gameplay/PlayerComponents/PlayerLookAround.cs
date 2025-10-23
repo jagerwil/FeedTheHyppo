@@ -1,16 +1,19 @@
-using System;
 using UnityEngine;
-using Zenject;
 
-namespace FeedTheHyppo.Gameplay.Player {
+namespace FeedTheHyppo.Gameplay.PlayerComponents {
     public class PlayerLookAround : MonoBehaviour {
-        [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private Camera _camera;
-        [Space]
         [SerializeField] private float _verticalAngleRestraint = 70f;
+        
+        private Rigidbody _rigidbody;
+        private Camera _camera;
 
         private float _horizontalRotation;
         private float _verticalRotation;
+
+        public void Initialize(Rigidbody rb, Camera cam) {
+            _rigidbody = rb;
+            _camera = cam;
+        }
 
         public void SetDeltaLookVector(Vector2 deltaLookVector) {
             _horizontalRotation += deltaLookVector.x;
@@ -36,8 +39,10 @@ namespace FeedTheHyppo.Gameplay.Player {
         private void RotatePlayer() {
             var rotation = _rigidbody.rotation.eulerAngles;
             rotation.y += _horizontalRotation;
-            
+
             _rigidbody.MoveRotation(Quaternion.Euler(rotation));
+            //transform.eulerAngles = rotation;
+            
             _horizontalRotation = 0f;
         }
     }
