@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using FeedTheHyppo.Configs;
 using Jagerwil.Core.Services;
 using Jagerwil.Core.Services.Implementations;
 using UnityEngine;

@@ -1,0 +1,44 @@
+using System;
+using UnityEngine;
+using Zenject;
+
+namespace FeedTheHyppo.Gameplay.Player {
+    public class PlayerLookAround : MonoBehaviour {
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Camera _camera;
+        [Space]
+        [SerializeField] private float _verticalAngleRestraint = 70f;
+
+        private float _horizontalRotation;
+        private float _verticalRotation;
+
+        public void SetDeltaLookVector(Vector2 deltaLookVector) {
+            _horizontalRotation += deltaLookVector.x;
+            _verticalRotation += -1f * deltaLookVector.y;
+            
+            RotateCamera();
+            RotatePlayer();
+        }
+
+        private void RotateCamera() {
+            var cameraAngle = _camera.transform.eulerAngles;
+            cameraAngle.x += _verticalRotation;
+            if (cameraAngle.x > 180f) {
+                cameraAngle.x -= 360f;
+            }
+            
+            cameraAngle.x = Mathf.Clamp(cameraAngle.x, -1f * _verticalAngleRestraint, _verticalAngleRestraint);
+
+            _camera.transform.eulerAngles = cameraAngle;
+            _verticalRotation = 0f;
+        }
+
+        private void RotatePlayer() {
+            var rotation = _rigidbody.rotation.eulerAngles;
+            rotation.y += _horizontalRotation;
+            
+            _rigidbody.MoveRotation(Quaternion.Euler(rotation));
+            _horizontalRotation = 0f;
+        }
+    }
+}

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ConfigsInstaller
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Architecture.DependencyInstallers.ConfigInstaller
   _scenesAddressesConfig: {fileID: 11400000, guid: f19e475ef04d07246abb6aff22a647d2, type: 2}
+  _playerConfig: {fileID: 11400000, guid: c83c572020d2faa43bb94b7c53e4ff60, type: 2}
