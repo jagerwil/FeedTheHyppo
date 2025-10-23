@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: ConfigsInstaller
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Architecture.DependencyInstallers.ConfigInstaller
   _scenesAddressesConfig: {fileID: 11400000, guid: f19e475ef04d07246abb6aff22a647d2, type: 2}
+  _prefabsAddressesConfig: {fileID: 11400000, guid: 3ae8db9d7b640b74cbd7dd005063a225, type: 2}
+  _factoryPoolsConfig: {fileID: 11400000, guid: 6800f112dcf05a342a8abf73d91cc1e1, type: 2}
   _playerConfig: {fileID: 11400000, guid: c83c572020d2faa43bb94b7c53e4ff60, type: 2}
+  _gameplayConfig: {fileID: 11400000, guid: dbc9fbc0d2c4e7346bdcb59f1112bf5b, type: 2}

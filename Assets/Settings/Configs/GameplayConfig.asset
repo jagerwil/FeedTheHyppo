@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7236b218ae14be4d97747d8416e6f1d, type: 3}
+  m_Name: GameplayConfig
+  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.GameplayConfig
+  <MelonFoodGiven>k__BackingField: 10
+  <MelonSpawnInterval>k__BackingField: 2
+  <MaxFoodValue>k__BackingField: 100
+  <DecreaseFoodSpeed>k__BackingField: 5

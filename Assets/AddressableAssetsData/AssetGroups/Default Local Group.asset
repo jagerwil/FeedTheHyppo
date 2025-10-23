@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 3a139c5289af9ed48a7c998e7fa8e3a0
   m_SerializeEntries:
+  - m_GUID: 70276a1291d7ee643a2fbee0abba68c5
+    m_Address: Assets/Prefabs/Melon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99c9720ab356a0642a771bea13969a05
     m_Address: Assets/Scenes/Gameplay.unity
     m_ReadOnly: 0

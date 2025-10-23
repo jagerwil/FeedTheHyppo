@@ -7,22 +7,24 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay.PlayerComponents {
     public class PlayerInteraction : MonoBehaviour {
+        #region Serialized & Injected Fields
         [SerializeField] private Transform _equippedItemRoot;
         [SerializeField] private LayerMask _interactionMask;
         [SerializeField] private LayerMask _throwRaycastMask;
         [SerializeField] private float _throwRaycastMaxDistance = 20f;
         
         [Inject] private IPlayerItemInteractionProvider _interactionProvider;
+        [Inject] private ISceneObjectsProvider _sceneObjectsProvider;
         [Inject] private PlayerConfig _config;
+        #endregion
 
+        #region Private Fields
         private Camera _camera;
         private Collider _collider;
-
-        public void Initialize(Camera cam, Collider col) {
-            _camera = cam;
-            _collider = col;
-        }
+        #endregion
         
+        
+        #region Unity Callbacks
         private void Update() {
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, 
                                 out var hit, _config.InteractionDistance, _interactionMask)) {
@@ -32,6 +34,13 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
             }
             
             _interactionProvider.SetLookedAtItem(null);
+        }
+        #endregion
+
+        #region Public Methods
+        public void Initialize(Camera cam, Collider col) {
+            _camera = cam;
+            _collider = col;
         }
         
         public void Interact() {
@@ -47,12 +56,13 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
             }
 
             if (lookedAtItem != null) {
+                lookedAtItem.TakeFromPlace(_equippedItemRoot, _collider);
                 _interactionProvider.SetEquippedItem(lookedAtItem);
-                lookedAtItem.AddIgnoreCollider(_collider);
-                lookedAtItem.PutIntoPlace(_equippedItemRoot, true);
             }
         }
+        #endregion
 
+        #region Private Methods
         private Vector3 GetThrowEndPoint() {
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward,
                                 out var hit, _throwRaycastMaxDistance, _throwRaycastMask)) {
@@ -61,5 +71,6 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
             
             return _camera.transform.position + _camera.transform.forward * _throwRaycastMaxDistance;
         }
+        #endregion
     }
 }
