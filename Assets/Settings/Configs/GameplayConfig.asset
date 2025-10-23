@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7236b218ae14be4d97747d8416e6f1d, type: 3}
   m_Name: GameplayConfig
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.GameplayConfig
-  <MelonFoodGiven>k__BackingField: 10
+  <MelonFoodIncrease>k__BackingField: 10
   <MelonSpawnInterval>k__BackingField: 2
   <MaxFoodValue>k__BackingField: 100
-  <DecreaseFoodSpeed>k__BackingField: 5
+  <DecreaseFoodSpeed>k__BackingField: 3
+  <AnimalDetectPlayerDistance>k__BackingField: 4

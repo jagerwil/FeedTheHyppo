@@ -4,18 +4,20 @@ using FeedTheHyppo.Gameplay._Factories;
 using FeedTheHyppo.Gameplay._Factories.Implementations;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay._Providers.Implementations;
+using FeedTheHyppo.Gameplay._Services;
 using FeedTheHyppo.Gameplay._Services.Implementations;
 using FeedTheHyppo.Gameplay.Items;
 using FeedTheHyppo.Gameplay.PlayerComponents;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace FeedTheHyppo.Architecture.Installers {
     public class GameplaySceneInstaller : MonoInstaller {
         [SerializeField] private Player _player;
         [SerializeField] private Transform _foodItemsDefaultRoot;
-        [FormerlySerializedAs("_foodSpawners")] [SerializeField] private ItemSpawners _itemSpawners;
+        [SerializeField] private ItemSpawners _itemSpawners;
+
+        private IFoodService _foodService;
         
         public override void InstallBindings() {
             BindServices();
@@ -28,6 +30,7 @@ namespace FeedTheHyppo.Architecture.Installers {
 
         private void BindServices() {
             Container.BindInterfacesTo<PlayerInputService>().AsSingle();
+            Container.BindInterfacesTo<FoodService>().AsSingle();
         }
 
         private void BindProviders() {

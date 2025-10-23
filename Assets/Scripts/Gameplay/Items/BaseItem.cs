@@ -29,13 +29,16 @@ namespace FeedTheHyppo.Gameplay.Items {
         #region Unity Callbacks
         private void OnCollisionEnter(Collision other) {
             if (_isThrown) {
-                onDespawnRequested?.Invoke(this);
+                InvokeOnDespawnRequested();
             }
         }
 #endregion
         
         #region Public Methods
         public virtual void OnSpawned() {
+            _rigidbody.linearVelocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+            
             onItemSpawned?.Invoke(this);
         }
 
@@ -82,6 +85,10 @@ namespace FeedTheHyppo.Gameplay.Items {
         private void AddIgnoreCollider(Collider ignoreCollider) {
             Physics.IgnoreCollision(_collider, ignoreCollider, true);
             _ignoredColliders.Add(ignoreCollider);
+        }
+
+        protected void InvokeOnDespawnRequested() {
+            onDespawnRequested?.Invoke(this);
         }
         #endregion
     }

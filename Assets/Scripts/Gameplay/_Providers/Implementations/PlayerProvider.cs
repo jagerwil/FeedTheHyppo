@@ -1,14 +1,12 @@
-using R3;
+using FeedTheHyppo.Gameplay.PlayerComponents;
 using UnityEngine;
 
 namespace FeedTheHyppo.Gameplay._Providers.Implementations {
     public class PlayerProvider : IPlayerProvider {
-        private readonly ReactiveProperty<PlayerComponents.Player> _player = new();
+        public Player Player { get; private set; }
         
-        public ReadOnlyReactiveProperty<PlayerComponents.Player> Player => _player;
-        
-        public void SetPlayer(PlayerComponents.Player player) {
-            _player.Value = player;
+        public PlayerProvider(Player player) {
+            Player = player;
         }
     }
 }
