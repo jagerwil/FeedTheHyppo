@@ -16,7 +16,7 @@ namespace FeedTheHyppo.Gameplay.Items {
 
         #region Unity Callbacks
         private void OnDestroy() {
-            BaseItem.onItemTaken -= ItemTaken;
+            BaseItem.onItemStateChanged -= ItemStateChanged;
         }
         #endregion
 
@@ -24,14 +24,16 @@ namespace FeedTheHyppo.Gameplay.Items {
         public void Initialize() {
             _spawnPoints.Initialize(_gameplayConfig.MelonSpawnInterval, SpawnFood);
 
-            BaseItem.onItemTaken -= ItemTaken;
-            BaseItem.onItemTaken += ItemTaken;
+            BaseItem.onItemStateChanged -= ItemStateChanged;
+            BaseItem.onItemStateChanged += ItemStateChanged;
         }
         #endregion
 
         #region Private Methods
-        private void ItemTaken(BaseItem item) {
-            _spawnPoints.TakeObject(item.gameObject);
+        private void ItemStateChanged(BaseItem item, ItemState state) {
+            if (state == ItemState.InPlace) {
+                _spawnPoints.TakeObject(item.gameObject);
+            }
         }
 
         private GameObject SpawnFood(SpawnPoint spawnPoint) {

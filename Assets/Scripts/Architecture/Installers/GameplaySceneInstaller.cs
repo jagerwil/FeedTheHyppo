@@ -6,16 +6,18 @@ using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay._Providers.Implementations;
 using FeedTheHyppo.Gameplay._Services;
 using FeedTheHyppo.Gameplay._Services.Implementations;
+using FeedTheHyppo.Gameplay.Animals;
 using FeedTheHyppo.Gameplay.Items;
-using FeedTheHyppo.Gameplay.PlayerComponents;
 using UnityEngine;
 using Zenject;
 
 namespace FeedTheHyppo.Architecture.Installers {
     public class GameplaySceneInstaller : MonoInstaller {
-        [SerializeField] private Player _player;
-        [SerializeField] private Transform _foodItemsDefaultRoot;
+        [SerializeField] private Transform _playerSpawnRoot;
+        [SerializeField] private Transform _foodItemsSpawnRoot;
+        [Space]
         [SerializeField] private ItemSpawners _itemSpawners;
+        [SerializeField] private Animal _animal;
 
         private IFoodService _foodService;
         
@@ -34,9 +36,7 @@ namespace FeedTheHyppo.Architecture.Installers {
         }
 
         private void BindProviders() {
-            Container.Bind<IPlayerProvider>()
-                     .To<PlayerProvider>()
-                     .AsSingle().WithArguments(_player);
+            Container.Bind<IPlayerProvider>().To<PlayerProvider>().AsSingle();
 
             Container.Bind<IPlayerItemInteractionProvider>()
                      .To<PlayerItemInteractionProvider>()
@@ -44,11 +44,17 @@ namespace FeedTheHyppo.Architecture.Installers {
 
             Container.Bind<ISceneObjectsProvider>()
                      .To<SceneObjectsProvider>()
-                     .AsSingle().WithArguments(_itemSpawners);
+                     .AsSingle().WithArguments(_itemSpawners, _animal);
         }
 
         private void BindFactories() {
-            Container.Bind<IFoodItemFactory>().To<FoodItemFactory>().AsSingle().WithArguments(_foodItemsDefaultRoot);
+            Container.Bind<IPlayerFactory>()
+                     .To<PlayerFactory>()
+                     .AsSingle().WithArguments(_playerSpawnRoot);
+            
+            Container.Bind<IFoodItemFactory>()
+                     .To<FoodItemFactory>()
+                     .AsSingle().WithArguments(_foodItemsSpawnRoot);
         }
 
         private void BindGameStates() {

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c804b32bbcd6e74badcba344d1efb7b, type: 3}
   m_Name: FactoryPoolsConfig
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.FactoryPoolsConfig
+  <PlayerFactoryPool>k__BackingField:
+    InitialSize: 0
+    MaxSize: 1
+    ExpandMethod: 0
   <FoodItemFactoryPool>k__BackingField:
     InitialSize: 0
     MaxSize: 2147483647

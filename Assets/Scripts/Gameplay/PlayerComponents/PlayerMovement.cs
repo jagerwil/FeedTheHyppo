@@ -13,8 +13,12 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
             _rigidbody.linearVelocity = _rigidbody.rotation * (_moveVector * _playerConfig.MoveSpeed);
         }
 
-        public void Initialize(Rigidbody rb) {
+        public void InjectComponents(Rigidbody rb) {
             _rigidbody = rb;
+        }
+
+        public void Initialize() {
+            _moveVector = Vector3.zero;
         }
 
         public void SetMoveVector(Vector2 moveVector) {

@@ -8,6 +8,7 @@ namespace FeedTheHyppo.Gameplay._Services {
 
         public event Action onFoodEnded;
 
+        public void Initialize();
         public void IncreaseFood(float amount);
     }
 }

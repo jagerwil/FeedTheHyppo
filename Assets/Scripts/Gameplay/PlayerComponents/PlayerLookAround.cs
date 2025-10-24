@@ -10,9 +10,15 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
         private float _horizontalRotation;
         private float _verticalRotation;
 
-        public void Initialize(Rigidbody rb, Camera cam) {
+        public void InjectComponents(Rigidbody rb, Camera cam) {
             _rigidbody = rb;
             _camera = cam;
+        }
+
+        public void Initialize() {
+            _camera.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            _horizontalRotation = 0f;
+            _verticalRotation = 0f;
         }
 
         public void SetDeltaLookVector(Vector2 deltaLookVector) {

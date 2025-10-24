@@ -501,12 +501,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312337262}
   serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1429496921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &346579601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346579602}
+  m_Layer: 0
+  m_Name: '[Player]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346579602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346579601}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1429496921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352581998
 GameObject:
@@ -553,9 +584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d978f2eeef884054fbbdbfc91c436150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Architecture.Installers.GameplaySceneInstaller
-  _player: {fileID: 1494155543}
-  _foodItemsDefaultRoot: {fileID: 312337263}
+  _playerSpawnRoot: {fileID: 346579602}
+  _foodItemsSpawnRoot: {fileID: 312337263}
   _itemSpawners: {fileID: 845699955}
+  _animal: {fileID: 1283787679}
 --- !u!114 &352582001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +779,6 @@ Transform:
   - {fileID: 1069506697}
   - {fileID: 1442272612}
   - {fileID: 1636191876}
-  - {fileID: 845699953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517329853
@@ -1052,7 +1083,7 @@ Transform:
   - {fileID: 1476875734}
   - {fileID: 1154169122}
   - {fileID: 239974477}
-  m_Father: {fileID: 429107253}
+  m_Father: {fileID: 1429496921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &845699954
 MonoBehaviour:
@@ -1880,6 +1911,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427764392}
   m_CullTransparentMesh: 1
+--- !u!1 &1429496920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429496921}
+  m_Layer: 0
+  m_Name: '[SpawnPlaces]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1429496921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429496920}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 346579602}
+  - {fileID: 312337263}
+  - {fileID: 845699953}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1442272611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,17 +2100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51ae7e717f97a946bd22b032ba39c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jagerwil.Core.Utils.Spawning.SpawnPoint
---- !u!114 &1494155543 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6941954139539099648, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-  m_PrefabInstance: {fileID: 4003558354143391086}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73568ff38345984997ad165ad933b63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.PlayerComponents.Player
 --- !u!1 &1612252992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,71 +2616,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &4003558354143391086
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3239118108201108837, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505419635506463170, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f7e85863f236014383654c2e39fba88, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 352581999}
   - {fileID: 429107253}
-  - {fileID: 312337263}
-  - {fileID: 4003558354143391086}
+  - {fileID: 1429496921}
   - {fileID: 1283787678}
   - {fileID: 57015507}
   - {fileID: 1463709597}

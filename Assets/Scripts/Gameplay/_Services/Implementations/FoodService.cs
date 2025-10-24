@@ -18,15 +18,18 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
             _gameplayConfig = gameplayConfig;
             
             MaxFood = gameplayConfig.MaxFoodValue;
+        }
+
+        public void Initialize() {
             SetFood(MaxFood);
+        }
+
+        public void IncreaseFood(float amount) {
+            SetFood(_currentFood.Value + amount);
         }
 
         public void Tick() {
             SetFood(_currentFood.Value - _gameplayConfig.DecreaseFoodSpeed * Time.deltaTime);
-        }
-        
-        public void IncreaseFood(float amount) {
-            SetFood(_currentFood.Value + amount);
         }
 
         private void SetFood(float foodValue) {

@@ -43,7 +43,7 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
         
         
         #region Public Methods
-        public void Initialize(PlayerMovement movement, PlayerLookAround lookAround, 
+        public void InjectComponents(PlayerMovement movement, PlayerLookAround lookAround, 
             PlayerInteraction interaction) {
             _playerMovement = movement;
             _playerLookAround = lookAround;

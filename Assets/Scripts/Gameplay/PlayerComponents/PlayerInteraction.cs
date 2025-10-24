@@ -38,9 +38,14 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
         #endregion
 
         #region Public Methods
-        public void Initialize(Camera cam, Collider col) {
+        public void InjectComponents(Camera cam, Collider col) {
             _camera = cam;
             _collider = col;
+        }
+
+        public void Initialize() {
+            _interactionProvider.SetLookedAtItem(null);
+            _interactionProvider.SetEquippedItem(null);
         }
         
         public void Interact() {

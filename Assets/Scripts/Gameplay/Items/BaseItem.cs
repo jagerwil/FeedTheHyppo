@@ -17,18 +17,18 @@ namespace FeedTheHyppo.Gameplay.Items {
         #region Private Fields
         private Transform _defaultRoot;
         private List<Collider> _ignoredColliders = new();
-        private bool _isThrown;
+        private ItemState _state;
         #endregion
 
         #region Static Events
         public static event Action<BaseItem> onItemSpawned;
-        public static event Action<BaseItem> onItemTaken;
+        public static event Action<BaseItem, ItemState> onItemStateChanged;
         public static event Action<BaseItem> onDespawnRequested;
         #endregion
         
         #region Unity Callbacks
         private void OnCollisionEnter(Collision other) {
-            if (_isThrown) {
+            if (_state == ItemState.Thrown && _despawnOnThrowCollision) {
                 InvokeOnDespawnRequested();
             }
         }
@@ -36,6 +36,8 @@ namespace FeedTheHyppo.Gameplay.Items {
         
         #region Public Methods
         public virtual void OnSpawned() {
+            SetState(ItemState.Idle);
+            
             _rigidbody.linearVelocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
             
@@ -48,7 +50,6 @@ namespace FeedTheHyppo.Gameplay.Items {
             }
             
             _ignoredColliders.Clear();
-            _isThrown = false;
         }
         
         public void SetDefaultRoot(Transform defaultRoot) {
@@ -58,30 +59,43 @@ namespace FeedTheHyppo.Gameplay.Items {
         public void TakeFromPlace(Transform newPlace, Collider colliderToIgnore = null) {
             transform.SetParent(newPlace);
             transform.localPosition = Vector3.zero;
-            
-            _collider.enabled = false;
-            _rigidbody.isKinematic = true;
+            SetState(ItemState.InPlace);
 
             if (colliderToIgnore) {
                 AddIgnoreCollider(colliderToIgnore);
             }
             
-            onItemTaken?.Invoke(this);
         }
 
         public void Throw(Vector3 endPoint, float throwForce) {
             transform.SetParent(_defaultRoot);
             transform.LookAt(endPoint);
-            
-            _collider.enabled = true;
-            _rigidbody.isKinematic = false;
-            _rigidbody.AddForce(transform.forward * throwForce, ForceMode.Impulse);
 
-            _isThrown = true;
+            SetState(ItemState.Thrown);
+            _rigidbody.AddForce(transform.forward * throwForce, ForceMode.Impulse);
         }
         #endregion
         
         #region Private Methods
+        private void SetState(ItemState state) {
+            switch (state) {
+                case ItemState.Idle:
+                case ItemState.Thrown:
+                    _collider.enabled = true;
+                    _rigidbody.isKinematic = false;
+                    break;
+                case ItemState.InPlace:
+                    _collider.enabled = false;
+                    _rigidbody.isKinematic = true;
+                    break;
+                default:
+                    Debug.LogError($"{nameof(BaseItem)}.{nameof(SetState)}(): ItemState \"{state}\" is not supported");
+                    return; 
+            }
+            _state = state;
+            onItemStateChanged?.Invoke(this, _state);
+        }
+        
         private void AddIgnoreCollider(Collider ignoreCollider) {
             Physics.IgnoreCollision(_collider, ignoreCollider, true);
             _ignoredColliders.Add(ignoreCollider);
@@ -91,5 +105,11 @@ namespace FeedTheHyppo.Gameplay.Items {
             onDespawnRequested?.Invoke(this);
         }
         #endregion
+    }
+
+    public enum ItemState {
+        Idle = 0,
+        InPlace = 1,
+        Thrown = 2,
     }
 }

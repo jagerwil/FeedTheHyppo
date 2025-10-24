@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace FeedTheHyppo.Gameplay.Animals {
@@ -7,7 +6,11 @@ namespace FeedTheHyppo.Gameplay.Animals {
         [SerializeField] private AnimalFoodReceiver _foodReceiver;
 
         private void Awake() {
-            _mouthController.Initialize(_foodReceiver);
+            _mouthController.InjectComponents(_foodReceiver);
+        }
+
+        public void Initialize() {
+            _mouthController.Initialize();
         }
     }
 }

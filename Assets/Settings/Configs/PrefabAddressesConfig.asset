@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e979b0c3a6e06c1458eea9c1815dbbc1, type: 3}
   m_Name: PrefabAddressesConfig
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.PrefabsAddressesConfig
+  <Player>k__BackingField:
+    m_AssetGUID: 9f7e85863f236014383654c2e39fba88
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   <Melon>k__BackingField:
     m_AssetGUID: 70276a1291d7ee643a2fbee0abba68c5
     m_SubObjectName: 
