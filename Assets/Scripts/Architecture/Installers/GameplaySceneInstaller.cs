@@ -8,6 +8,7 @@ using FeedTheHyppo.Gameplay._Services;
 using FeedTheHyppo.Gameplay._Services.Implementations;
 using FeedTheHyppo.Gameplay.Animals;
 using FeedTheHyppo.Gameplay.Items;
+using FeedTheHyppo.Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace FeedTheHyppo.Architecture.Installers {
         [Space]
         [SerializeField] private ItemSpawners _itemSpawners;
         [SerializeField] private Animal _animal;
+        [Space]
+        [SerializeField] private GameUI _gameUI;
 
         private IFoodService _foodService;
         
@@ -33,6 +36,7 @@ namespace FeedTheHyppo.Architecture.Installers {
         private void BindServices() {
             Container.BindInterfacesTo<PlayerInputService>().AsSingle();
             Container.BindInterfacesTo<FoodService>().AsSingle();
+            Container.BindInterfacesTo<ScoreService>().AsSingle();
         }
 
         private void BindProviders() {
@@ -45,6 +49,10 @@ namespace FeedTheHyppo.Architecture.Installers {
             Container.Bind<ISceneObjectsProvider>()
                      .To<SceneObjectsProvider>()
                      .AsSingle().WithArguments(_itemSpawners, _animal);
+            
+            Container.Bind<IUIProvider>()
+                     .To<UIProvider>()
+                     .AsSingle().WithArguments(_gameUI);
         }
 
         private void BindFactories() {

@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: watermelon-b
       objectReference: {fileID: 0}
+    - target: {fileID: 3187223639805229377, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2376250040380048405, guid: 53b75db2931014d48be4201ead72639a, type: 3}
     m_RemovedGameObjects: []

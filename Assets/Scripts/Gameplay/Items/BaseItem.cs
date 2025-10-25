@@ -79,11 +79,11 @@ namespace FeedTheHyppo.Gameplay.Items {
         #region Private Methods
         private void SetState(ItemState state) {
             switch (state) {
-                case ItemState.Idle:
                 case ItemState.Thrown:
                     _collider.enabled = true;
                     _rigidbody.isKinematic = false;
                     break;
+                case ItemState.Idle:
                 case ItemState.InPlace:
                     _collider.enabled = false;
                     _rigidbody.isKinematic = true;
