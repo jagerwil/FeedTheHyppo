@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3328887479490292633
 Transform:
   m_ObjectHideFlags: 0
@@ -117,11 +117,12 @@ Transform:
   m_GameObject: {fileID: 5630209343811811833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3328887479490292633}
+  - {fileID: 3992925803426942671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8818987171195866015
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Items.FoodItem
   _collider: {fileID: 4908913656869030973}
   _rigidbody: {fileID: 6996137653270705069}
-  _restoredHungerAmount: 10
+  _despawnOnThrowCollision: 1
 --- !u!54 &6996137653270705069
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -185,5 +186,72 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.45
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.215
+  m_Center: {x: -0.005, y: 0.18, z: 0}
+--- !u!1001 &1159997359126490420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2262287574615150993}
+    m_Modifications:
+    - target: {fileID: 2376250040380048405, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187223639805229377, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+      propertyPath: m_Name
+      value: watermelon-b
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2376250040380048405, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+--- !u!4 &3992925803426942671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2841942541276881915, guid: 53b75db2931014d48be4201ead72639a, type: 3}
+  m_PrefabInstance: {fileID: 1159997359126490420}
+  m_PrefabAsset: {fileID: 0}
