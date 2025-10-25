@@ -1,0 +1,261 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1370723702986719841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6227776932355973827}
+  - component: {fileID: 901889010740217085}
+  - component: {fileID: 7293817534719298361}
+  m_Layer: 8
+  m_Name: FoodReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6227776932355973827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370723702986719841}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.024184613, y: -0, z: -0, w: 0.9997075}
+  m_LocalPosition: {x: 0, y: 0.681, z: 1.8540001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3706737005967916144}
+  m_LocalEulerAnglesHint: {x: -2.772, y: 0, z: 0}
+--- !u!114 &901889010740217085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370723702986719841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85ca6085ca56334b80bcbbcc6f1549a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Animals.AnimalFoodReceiver
+  _collider: {fileID: 7293817534719298361}
+--- !u!65 &7293817534719298361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370723702986719841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.88, y: 1.65, z: 1.09}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5275000504337931694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3706737005967916144}
+  - component: {fileID: 1860584106758311194}
+  - component: {fileID: 1303824920699327316}
+  m_Layer: 8
+  m_Name: Hippo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3706737005967916144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275000504337931694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -6.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 710294082655799501}
+  - {fileID: 6227776932355973827}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1860584106758311194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275000504337931694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bfaae9ed7d2e94c85f96f217bdc0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Animals.Animal
+  _mouthController: {fileID: 1303824920699327316}
+  _foodReceiver: {fileID: 901889010740217085}
+--- !u!114 &1303824920699327316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275000504337931694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b588094bd08a450478a29c6e6cea5a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Animals.AnimalMouthController
+  _mouthRoot: {fileID: 0}
+--- !u!1001 &6728049571081089307
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3706737005967916144}
+    m_Modifications:
+    - target: {fileID: 1851410070051431403, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851410070051431403, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.192
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851410070051431403, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131348621115612520, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.171
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131348621115612520, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131348621115612520, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167328598736679013, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167328598736679013, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167328598736679013, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.40551412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000032279394
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000005288356
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9140888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559171924123253542, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 132.153
+      objectReference: {fileID: 0}
+    - target: {fileID: 6903593167723127660, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+      propertyPath: m_Name
+      value: Hippo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+--- !u!4 &710294082655799501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6090465129911237078, guid: dd42c7392266fdf4a82db9a7e9f170d3, type: 3}
+  m_PrefabInstance: {fileID: 6728049571081089307}
+  m_PrefabAsset: {fileID: 0}

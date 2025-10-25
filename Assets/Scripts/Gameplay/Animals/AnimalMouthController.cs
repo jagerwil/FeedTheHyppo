@@ -9,7 +9,7 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay.Animals { 
     public class AnimalMouthController : MonoBehaviour {
-        [SerializeField] private GameObject _mouthRoot;
+        //[SerializeField] private GameObject _mouthRoot;
         
         [Inject] private IPlayerProvider _playerProvider;
         [Inject] private GameplayConfig _gameplayConfig;
@@ -57,7 +57,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
 
             _isMouthOpened = isMouthOpened;
 
-            _mouthRoot.SetActive(_isMouthOpened);
+            //_mouthRoot.SetActive(_isMouthOpened);
             _foodReceiver.SetActive(_isMouthOpened);
         }
 
