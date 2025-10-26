@@ -22,7 +22,10 @@ namespace FeedTheHyppo.Gameplay.Items {
         #region Private Fields
         private Transform _defaultRoot;
         private List<Collider> _ignoredColliders = new();
-        private ItemState _state;
+        #endregion
+        
+        #region Public Properties
+        public ItemState State { get; private set; }
         #endregion
 
         #region Static Events
@@ -33,7 +36,7 @@ namespace FeedTheHyppo.Gameplay.Items {
         
         #region Unity Callbacks
         private void OnCollisionEnter(Collision other) {
-            if (_state == ItemState.Thrown && _despawnOnThrowCollision) {
+            if (State == ItemState.Thrown && _despawnOnThrowCollision) {
                 StartDespawning();
             }
         }
@@ -104,8 +107,8 @@ namespace FeedTheHyppo.Gameplay.Items {
                     Debug.LogError($"{nameof(BaseItem)}.{nameof(SetState)}(): ItemState \"{state}\" is not supported");
                     return; 
             }
-            _state = state;
-            onItemStateChanged?.Invoke(this, _state);
+            State = state;
+            onItemStateChanged?.Invoke(this, State);
         }
         
         private void AddIgnoreCollider(Collider ignoreCollider) {
