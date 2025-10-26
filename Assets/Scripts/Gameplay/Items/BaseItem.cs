@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
 using FeedTheHyppo.Gameplay._Providers;
+using FeedTheHyppo.Utils;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace FeedTheHyppo.Gameplay.Items {
     public class BaseItem : MonoBehaviour, IPoolable {
         #region Serialized Fields
+        [SerializeField] private GameObject _model;
         [SerializeField] private Collider _collider;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private bool _despawnOnThrowCollision = true;
+        [Header("Optional")]
+        [CanBeNull][SerializeField] private ParticleSystemWrapper _destroyParticles;
         
         [Inject] private ISceneObjectsProvider _sceneObjectsProvider;
         #endregion
@@ -29,13 +34,16 @@ namespace FeedTheHyppo.Gameplay.Items {
         #region Unity Callbacks
         private void OnCollisionEnter(Collision other) {
             if (_state == ItemState.Thrown && _despawnOnThrowCollision) {
-                InvokeOnDespawnRequested();
+                StartDespawning();
             }
         }
 #endregion
         
         #region Public Methods
         public virtual void OnSpawned() {
+            _model.SetActive(true);
+            _destroyParticles?.Clear();
+            
             SetState(ItemState.Idle);
             
             _rigidbody.linearVelocity = Vector3.zero;
@@ -84,7 +92,11 @@ namespace FeedTheHyppo.Gameplay.Items {
                     _rigidbody.isKinematic = false;
                     break;
                 case ItemState.Idle:
+                    _collider.enabled = true;
+                    _rigidbody.isKinematic = true;
+                    break;
                 case ItemState.InPlace:
+                case ItemState.Destroyed:
                     _collider.enabled = false;
                     _rigidbody.isKinematic = true;
                     break;
@@ -101,7 +113,19 @@ namespace FeedTheHyppo.Gameplay.Items {
             _ignoredColliders.Add(ignoreCollider);
         }
 
-        protected void InvokeOnDespawnRequested() {
+        protected void StartDespawning() {
+            SetState(ItemState.Destroyed);
+            
+            if (_destroyParticles) {
+                _model.SetActive(false);
+                _destroyParticles.Play(InvokeOnDespawnRequested);
+                return;
+            }
+
+            InvokeOnDespawnRequested();
+        }
+
+        private void InvokeOnDespawnRequested() {
             onDespawnRequested?.Invoke(this);
         }
         #endregion
@@ -111,5 +135,6 @@ namespace FeedTheHyppo.Gameplay.Items {
         Idle = 0,
         InPlace = 1,
         Thrown = 2,
+        Destroyed = 3,
     }
 }

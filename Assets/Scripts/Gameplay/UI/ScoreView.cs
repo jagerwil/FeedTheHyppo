@@ -22,7 +22,6 @@ namespace FeedTheHyppo.Gameplay.UI {
         }
 
         private void ScoreChanged(int score) {
-            Debug.Log($"Score changed to {score}!");
             _scoreText.text = _scorePrefix + score.ToString();
         }
     }

@@ -10,7 +10,7 @@ namespace FeedTheHyppo.Gameplay.Items {
 
         public void IncreaseFood() {
             _foodService.IncreaseFood(_gameplayConfig.MelonFoodIncrease);
-            InvokeOnDespawnRequested();
+            StartDespawning();
         }
     }
 }

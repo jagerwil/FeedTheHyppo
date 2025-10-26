@@ -29,10 +29,15 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, 
                                 out var hit, _config.InteractionDistance, _interactionMask)) {
                 var item = hit.transform?.GetComponent<BaseItem>();
+
+                if (item == null) {
+                    Debug.LogError("HIT WITH NOT ITEM!");
+                }
                 _interactionProvider.SetLookedAtItem(item);
                 return;
             }
             
+            Debug.LogWarning("NO INTERACTION RAYCAST!");
             _interactionProvider.SetLookedAtItem(null);
         }
         #endregion
