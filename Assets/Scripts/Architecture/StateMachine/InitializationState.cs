@@ -11,7 +11,7 @@ namespace FeedTheHyppo.Architecture.StateMachine {
         
         public void Enter() {
             Application.targetFrameRate = 60;
-            
+
             _stateMachine.Enter<SceneLoadingState, SceneType>(SceneType.Gameplay);
         }
         

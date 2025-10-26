@@ -1,5 +1,7 @@
 using System;
 using FeedTheHyppo.Configs;
+using Jagerwil.Core.Services;
+using Jagerwil.Core.UI;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +10,7 @@ using Zenject;
 namespace FeedTheHyppo.Gameplay._Services.Implementations {
     public class PlayerInputService : IPlayerInputService, ITickable {
         #region Readonly Fields
+        private readonly IWindowService _windowService;
         private readonly PlayerInputInfo _inputInfo;
         private readonly InputActions _inputActions;
 
@@ -23,7 +26,8 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         #endregion
         
         
-        public PlayerInputService(PlayerConfig playerConfig) {
+        public PlayerInputService(IWindowService windowService, PlayerConfig playerConfig) {
+            _windowService = windowService;
             _inputInfo = playerConfig.InputInfo;
             _inputActions = new InputActions();
 
@@ -44,11 +48,20 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         }
 
         public void Enable() {
+            _windowService.onWindowOpened += WindowOpened;
+            _windowService.onAllWindowsClosed += AllWindowsClosed;
+            
+            SetCursorLocked(true);
             _inputActions.Enable();
         }
         
         public void Disable() {
             _inputActions.Disable();
+            SetCursorLocked(false);
+            
+            _windowService.onWindowOpened -= WindowOpened;
+            _windowService.onAllWindowsClosed -= AllWindowsClosed;
+            
         }
         #endregion
 
@@ -64,6 +77,19 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
 
         private void InteractPerformed(InputAction.CallbackContext ctx) {
             OnInteractButtonPressed?.Invoke();
+        }
+
+        private void WindowOpened(BaseWindow window) {
+            SetCursorLocked(false);
+        }
+
+        private void AllWindowsClosed() {
+            SetCursorLocked(true);
+        }
+
+        private void SetCursorLocked(bool isLocked) {
+            Cursor.visible = !isLocked;
+            Cursor.lockState = isLocked ? CursorLockMode.Locked : CursorLockMode.None;
         }
         #endregion
     }
