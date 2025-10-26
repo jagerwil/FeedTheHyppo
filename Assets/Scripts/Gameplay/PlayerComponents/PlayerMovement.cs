@@ -4,13 +4,18 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay.PlayerComponents {
     public class PlayerMovement : MonoBehaviour {
-        [Inject] private PlayerConfig _playerConfig;
+        private PlayerMovementInfo _movementInfo;
         
         private Rigidbody _rigidbody;
         private Vector3 _moveVector;
 
+        [Inject]
+        private void Inject(PlayerConfig playerConfig) {
+            _movementInfo = playerConfig.MovementInfo;
+        }
+
         private void FixedUpdate() {
-            _rigidbody.linearVelocity = _rigidbody.rotation * (_moveVector * _playerConfig.MoveSpeed);
+            _rigidbody.linearVelocity = _rigidbody.rotation * (_moveVector * _movementInfo.MoveSpeed);
         }
 
         public void InjectComponents(Rigidbody rb) {

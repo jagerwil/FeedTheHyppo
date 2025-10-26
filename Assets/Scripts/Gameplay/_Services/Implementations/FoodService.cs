@@ -7,7 +7,7 @@ using Zenject;
 namespace FeedTheHyppo.Gameplay._Services.Implementations {
     public class FoodService : IFoodService, ITickable {
         private readonly ReactiveProperty<float> _currentFood = new();
-        private readonly GameplayConfig _gameplayConfig;
+        private readonly FoodServiceInfo _info;
         
         public ReadOnlyReactiveProperty<float> CurrentFood => _currentFood;
         public float MaxFood { get; private set; }
@@ -15,9 +15,9 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         public event Action onFoodEnded;
 
         public FoodService(GameplayConfig gameplayConfig) {
-            _gameplayConfig = gameplayConfig;
+            _info = gameplayConfig.FoodServiceInfo;
             
-            MaxFood = gameplayConfig.MaxFoodValue;
+            MaxFood = _info.MaxFoodValue;
         }
 
         public void Initialize() {
@@ -29,7 +29,7 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         }
 
         public void Tick() {
-            SetFood(_currentFood.Value - _gameplayConfig.DecreaseFoodSpeed * Time.deltaTime);
+            SetFood(_currentFood.Value - _info.DecreaseFoodSpeed * Time.deltaTime);
         }
 
         private void SetFood(float foodValue) {

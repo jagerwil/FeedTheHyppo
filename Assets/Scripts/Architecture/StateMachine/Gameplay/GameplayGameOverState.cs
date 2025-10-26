@@ -1,3 +1,4 @@
+using FeedTheHyppo.Architecture._Services;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay._Services;
 using FeedTheHyppo.Gameplay.Windows;
@@ -9,18 +10,25 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
         private readonly IGameStateMachine _stateMachine;
         private readonly IScoreService _scoreService;
         private readonly IWindowService _windowService;
+        private readonly IMusicService _musicService;
         private readonly IUIProvider _uiProvider;
         
-        public GameplayGameOverState(IGameStateMachine stateMachine, IScoreService scoreService, 
-            IWindowService windowService, IUIProvider uiProvider) {
+        public GameplayGameOverState(IGameStateMachine stateMachine, 
+            IScoreService scoreService, 
+            IWindowService windowService, 
+            IMusicService musicService,
+            IUIProvider uiProvider) {
             _stateMachine = stateMachine;
             _scoreService = scoreService;
             _windowService = windowService;
+            _musicService = musicService;
             _uiProvider = uiProvider;
         }
 
         public void Enter() {
             _scoreService.StopCounting();
+            
+            _musicService.StartMuffle();
             _uiProvider.GameUI.HideUI();
             
             var gameOverWindow = _windowService.Open<GameOverWindow>();

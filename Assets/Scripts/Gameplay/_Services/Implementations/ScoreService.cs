@@ -8,7 +8,7 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         private const string MaxScoreSaveKey = "MaxScore";
         private readonly ReactiveProperty<int> _score = new();
         
-        private readonly GameplayConfig _config;
+        private readonly ScoreServiceInfo _info;
 
         private float _timeUntilNextScore;
         private float _unclampedScore;
@@ -19,7 +19,7 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
         public bool IsMaxScoreReached { get; private set; }
 
         public ScoreService(GameplayConfig config) {
-            _config = config;
+            _info = config.ScoreServiceInfo;
             
             //TODO: Move to specific SaveLoadService when have more data to save / load
             MaxScore = PlayerPrefs.GetInt(MaxScoreSaveKey);
@@ -29,7 +29,7 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
             SetUnclampedScore(0f);
             IsMaxScoreReached = false;
 
-            _timeUntilNextScore = _config.ScoreUpdatesInterval;
+            _timeUntilNextScore = _info.ScoreUpdatesInterval;
             _isCounting = true;
         }
         
@@ -54,8 +54,8 @@ namespace FeedTheHyppo.Gameplay._Services.Implementations {
                 return;
             }
             
-            _timeUntilNextScore += _config.ScoreUpdatesInterval;
-            SetUnclampedScore(_unclampedScore + _config.ScorePerSecond * _config.ScoreUpdatesInterval);
+            _timeUntilNextScore += _info.ScoreUpdatesInterval;
+            SetUnclampedScore(_unclampedScore + _info.ScorePerSecond * _info.ScoreUpdatesInterval);
         }
 
         private void SetUnclampedScore(float unclampedScore) {

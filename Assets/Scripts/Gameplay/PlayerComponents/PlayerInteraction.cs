@@ -15,29 +15,28 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
         
         [Inject] private IPlayerItemInteractionProvider _interactionProvider;
         [Inject] private ISceneObjectsProvider _sceneObjectsProvider;
-        [Inject] private PlayerConfig _config;
+        private PlayerItemInteractionInfo _interactionInfo;
         #endregion
 
         #region Private Fields
         private Camera _camera;
         private Collider _collider;
         #endregion
-        
+
+        [Inject]
+        private void Inject(PlayerConfig config) {
+            _interactionInfo = config.ItemInteractionInfo;
+        }
         
         #region Unity Callbacks
         private void Update() {
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, 
-                                out var hit, _config.InteractionDistance, _interactionMask)) {
+                                out var hit, _interactionInfo.InteractionDistance, _interactionMask)) {
                 var item = hit.transform?.GetComponent<BaseItem>();
-
-                if (item == null) {
-                    Debug.LogError("HIT WITH NOT ITEM!");
-                }
                 _interactionProvider.SetLookedAtItem(item);
                 return;
             }
-            
-            Debug.LogWarning("NO INTERACTION RAYCAST!");
+
             _interactionProvider.SetLookedAtItem(null);
         }
         #endregion
@@ -59,7 +58,7 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
 
             if (equippedItem != null) {
                 var throwEndPoint = GetThrowEndPoint();
-                equippedItem.Throw(throwEndPoint, _config.ItemThrowForce);
+                equippedItem.Throw(throwEndPoint, _interactionInfo.ItemThrowForce);
                 
                 _interactionProvider.SetEquippedItem(null);
                 return;

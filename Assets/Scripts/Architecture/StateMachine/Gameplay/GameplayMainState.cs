@@ -1,3 +1,4 @@
+using FeedTheHyppo.Architecture._Services;
 using FeedTheHyppo.Gameplay._Factories;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay._Services;
@@ -10,17 +11,18 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
         private readonly IPlayerInputService _inputService;
         private readonly IFoodService _foodService;
         private readonly IScoreService _scoreService;
+        private readonly IMusicService _musicService;
         
         private readonly IPlayerFactory _playerFactory;
         
         private readonly ISceneObjectsProvider _sceneObjectsProvider;
         private readonly IUIProvider _uiProvider;
-        
 
         public GameplayMainState(IGameStateMachine stateMachine,
             IPlayerInputService inputService,
             IFoodService foodService,
             IScoreService scoreService,
+            IMusicService musicService,
             IPlayerFactory playerFactory,
             ISceneObjectsProvider sceneObjectsProvider,
             IUIProvider uiProvider) {
@@ -29,6 +31,7 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
             _inputService = inputService;
             _foodService = foodService;
             _scoreService = scoreService;
+            _musicService = musicService;
             
             _playerFactory = playerFactory;
             
@@ -45,7 +48,8 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
             _foodService.Initialize();
             _foodService.onFoodEnded += FoodEnded;
             _scoreService.StartCounting();
-            
+
+            _musicService.StopMuffle();
             _uiProvider.GameUI.ShowUI();
             
             _inputService.Enable();

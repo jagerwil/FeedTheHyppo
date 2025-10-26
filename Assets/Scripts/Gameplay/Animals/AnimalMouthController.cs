@@ -1,4 +1,3 @@
-using System;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay.PlayerComponents;
@@ -36,7 +35,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
             }
             
             var sqrDistanceToPlayer = Vector3.SqrMagnitude(transform.position - _playerTransform.position);
-            var targetDistance = _gameplayConfig.AnimalDetectPlayerDistance;
+            var targetDistance = _gameplayConfig.AnimalInfo.AnimalDetectPlayerDistance;
             
             var shouldOpenMouth = sqrDistanceToPlayer < targetDistance * targetDistance;
             SetIsMouthOpened(shouldOpenMouth);

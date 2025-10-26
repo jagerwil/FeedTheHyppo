@@ -11,6 +11,7 @@ namespace FeedTheHyppo.Architecture.Installers {
         [Space]
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private GameplayConfig _gameplayConfig;
+        [SerializeField] private AudioConfig _audioConfig;
         
         public override void InstallBindings() {
             Container.Bind<ScenesAddressesConfig>().FromInstance(_scenesAddressesConfig).AsSingle();
@@ -19,6 +20,7 @@ namespace FeedTheHyppo.Architecture.Installers {
             
             Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
             Container.Bind<GameplayConfig>().FromInstance(_gameplayConfig).AsSingle();
+            Container.Bind<AudioConfig>().FromInstance(_audioConfig).AsSingle();
         }
     }
 }

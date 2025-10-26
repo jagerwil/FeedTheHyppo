@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c7495868b63d540a7909eaac851082, type: 3}
+  m_Name: _ConfigsInstaller
+  m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Architecture.DependencyInstallers.ConfigInstaller
+  _scenesAddressesConfig: {fileID: 11400000, guid: f19e475ef04d07246abb6aff22a647d2, type: 2}
+  _prefabsAddressesConfig: {fileID: 11400000, guid: 3ae8db9d7b640b74cbd7dd005063a225, type: 2}
+  _factoryPoolsConfig: {fileID: 11400000, guid: 6800f112dcf05a342a8abf73d91cc1e1, type: 2}
+  _playerConfig: {fileID: 11400000, guid: c83c572020d2faa43bb94b7c53e4ff60, type: 2}
+  _gameplayConfig: {fileID: 11400000, guid: dbc9fbc0d2c4e7346bdcb59f1112bf5b, type: 2}
+  _audioConfig: {fileID: 11400000, guid: 656875a47098de34bb46732dacf3cb29, type: 2}

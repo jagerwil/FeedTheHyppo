@@ -1,3 +1,5 @@
+using FeedTheHyppo.Architecture._Services;
+using FeedTheHyppo.Architecture._Services.Implementations;
 using FeedTheHyppo.Architecture.SceneInitializers;
 using FeedTheHyppo.Architecture.StateMachine.Gameplay;
 using FeedTheHyppo.Gameplay._Factories;
@@ -19,8 +21,10 @@ namespace FeedTheHyppo.Architecture.Installers {
         [Space]
         [SerializeField] private ItemSpawners _itemSpawners;
         [SerializeField] private Animal _animal;
-        [Space]
+        [Header("UI")]
         [SerializeField] private GameUI _gameUI;
+        [Header("Audio")]
+        [SerializeField] private AudioSource _musicSource;
 
         private IFoodService _foodService;
         
@@ -37,6 +41,10 @@ namespace FeedTheHyppo.Architecture.Installers {
             Container.BindInterfacesTo<PlayerInputService>().AsSingle();
             Container.BindInterfacesTo<FoodService>().AsSingle();
             Container.BindInterfacesTo<ScoreService>().AsSingle();
+            
+            Container.Bind<IMusicService>()
+                     .To<MusicService>()
+                     .AsSingle().WithArguments(_musicSource);
         }
 
         private void BindProviders() {

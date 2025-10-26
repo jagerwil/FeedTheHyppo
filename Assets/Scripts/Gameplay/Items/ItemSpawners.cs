@@ -22,7 +22,7 @@ namespace FeedTheHyppo.Gameplay.Items {
 
         #region Public Methods
         public void Initialize() {
-            _spawnPoints.Initialize(_gameplayConfig.MelonSpawnInterval, SpawnFood);
+            _spawnPoints.Initialize(_gameplayConfig.FoodInfo.MelonSpawnInterval, SpawnFood);
 
             BaseItem.onItemStateChanged -= ItemStateChanged;
             BaseItem.onItemStateChanged += ItemStateChanged;
