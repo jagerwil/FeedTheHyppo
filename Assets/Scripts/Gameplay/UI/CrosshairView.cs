@@ -6,7 +6,7 @@ using UnityEngine;
 using Zenject;
 
 namespace FeedTheHyppo.Gameplay.UI {
-    public class Crosshair : MonoBehaviour {
+    public class CrosshairView : MonoBehaviour {
         [SerializeField] private GameObject _defaultCrosshair;
         [SerializeField] private GameObject _interactCrosshair;
         
