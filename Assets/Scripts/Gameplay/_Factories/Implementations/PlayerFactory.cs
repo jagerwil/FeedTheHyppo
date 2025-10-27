@@ -8,11 +8,11 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay._Factories.Implementations {
     public class PlayerFactory : BaseGameFactory<Player>, IPlayerFactory {
-        private readonly PrefabsAddressesConfig _prefabsAddressesConfig;
+        private readonly PrefabAddressesConfig _prefabsAddressesConfig;
 
         public PlayerFactory(IInstantiator instantiator,
             IAddressablesLoader addressablesLoader,
-            PrefabsAddressesConfig prefabsAddressesConfig,
+            PrefabAddressesConfig prefabsAddressesConfig,
             FactoryPoolsConfig factoryPoolsConfig,
             Transform defaultRoot)
             : base(instantiator, addressablesLoader, factoryPoolsConfig.PlayerFactoryPool, defaultRoot) {

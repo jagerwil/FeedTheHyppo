@@ -1,6 +1,9 @@
 using Cysharp.Threading.Tasks;
+using FeedTheHyppo.Architecture._Factories;
 using FeedTheHyppo.Architecture._Services;
+using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Factories;
+using Jagerwil.Core.Architecture.Factories;
 using Jagerwil.Core.Architecture.StateMachine;
 using Jagerwil.Core.Services;
 using UnityEngine;
@@ -14,17 +17,30 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
         
         private readonly IPlayerFactory _playerFactory;
         private readonly IFoodItemFactory _foodItemFactory;
+        private readonly ISoundFactory _soundFactory;
+        private readonly IParticleSystemFactory _particleSystemFactory;
+        
+        private readonly PrefabAddressesConfig _prefabsAddressesConfig;
 
         public GameplayInitializationState(IGameStateMachine stateMachine, 
             IWindowService windowService,
             IMusicService musicService,
             IPlayerFactory playerFactory,
-            IFoodItemFactory foodItemFactory) {
+            IFoodItemFactory foodItemFactory,
+            ISoundFactory soundFactory,
+            IParticleSystemFactory particleSystemFactory,
+            PrefabAddressesConfig prefabsAddressesConfig) {
             _stateMachine = stateMachine;
+            
             _windowService = windowService;
             _musicService = musicService;
+            
             _playerFactory = playerFactory;
             _foodItemFactory = foodItemFactory;
+            _soundFactory = soundFactory;
+            _particleSystemFactory = particleSystemFactory;
+            
+            _prefabsAddressesConfig = prefabsAddressesConfig;
         }
 
         public void Enter() {
@@ -39,8 +55,12 @@ namespace FeedTheHyppo.Architecture.StateMachine.Gameplay {
         private async UniTask WarmUpFactoriesAsync() {
             var warmUpPlayerTask = _playerFactory.WarmUpAsync();
             var warmUpItemsTask = _foodItemFactory.WarmUpAsync();
+            var warmUpAudioSourcesTask = _soundFactory.WarmUpAsync();
 
-            await UniTask.WhenAll(warmUpPlayerTask, warmUpItemsTask);
+            var particlePrefabs = _prefabsAddressesConfig.ParticleSystems.Prefabs;
+            var warmUpParticlesTask = _particleSystemFactory.WarmUpAsync(particlePrefabs);
+
+            await UniTask.WhenAll(warmUpPlayerTask, warmUpItemsTask, warmUpAudioSourcesTask, warmUpParticlesTask);
             
             _stateMachine.Enter<GameplayMainState>();
         }

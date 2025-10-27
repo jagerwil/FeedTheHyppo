@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 3a139c5289af9ed48a7c998e7fa8e3a0
   m_SerializeEntries:
+  - m_GUID: 5533d4ca56fd3a441a71e19b7a97e5c9
+    m_Address: Assets/Prefabs/AudioSource.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 70276a1291d7ee643a2fbee0abba68c5
     m_Address: Assets/Prefabs/Melon.prefab
     m_ReadOnly: 0
@@ -27,6 +32,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f7e85863f236014383654c2e39fba88
     m_Address: Assets/Prefabs/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db09ef1bff99fa245b9c1c836ab62bae
+    m_Address: Assets/Prefabs/ParticleSystems/MelonDestroyParticles.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

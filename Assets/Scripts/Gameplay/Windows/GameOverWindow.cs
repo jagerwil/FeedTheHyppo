@@ -1,4 +1,6 @@
 using System;
+using FeedTheHyppo.Architecture;
+using FeedTheHyppo.Architecture._Factories;
 using FeedTheHyppo.Gameplay._Services;
 using Jagerwil.Core.UI;
 using TMPro;
@@ -19,8 +21,10 @@ namespace FeedTheHyppo.Gameplay.Windows {
         [SerializeField] private GameObject _maxScoreReachedText;
         [Space]
         [SerializeField] private Button _restartButton;
+        [SerializeField] private SoundId _gameOverSound;
         
         [Inject] private IScoreService _scoreService;
+        [Inject] private ISoundFactory _soundFactory;
         #endregion
         
         #region Private fields
@@ -32,7 +36,12 @@ namespace FeedTheHyppo.Gameplay.Windows {
         private void Awake() {
             _restartButton.onClick.AddListener(RestartButtonPressed);
         }
-        #endregion
+
+        private void OnEnable() {
+            _soundFactory.Spawn(_gameOverSound);
+        }
+
+#endregion
 
         
         #region Public methods

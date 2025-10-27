@@ -6,5 +6,7 @@ namespace FeedTheHyppo.Configs {
     public class FactoryPoolsConfig : ScriptableObject {
         [field: SerializeField] public MemoryPoolSettings PlayerFactoryPool { get; private set; }
         [field: SerializeField] public MemoryPoolSettings FoodItemFactoryPool { get; private set; }
+        [field: SerializeField] public MemoryPoolSettings SoundFactoryPool { get; private set; }
+        [field: SerializeField] public MemoryPoolSettings ParticlesFactoryPool { get; private set; }
     }
 }

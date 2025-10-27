@@ -1,22 +1,26 @@
 using System;
 using System.Collections.Generic;
+using FeedTheHyppo.Architecture;
+using FeedTheHyppo.Architecture._Factories;
+using FeedTheHyppo.Gameplay._Factories;
 using FeedTheHyppo.Gameplay._Providers;
-using FeedTheHyppo.Utils;
-using JetBrains.Annotations;
+using Jagerwil.Core.Architecture.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace FeedTheHyppo.Gameplay.Items {
     public class BaseItem : MonoBehaviour, IPoolable {
         #region Serialized Fields
-        [SerializeField] private GameObject _model;
         [SerializeField] private Collider _collider;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private bool _despawnOnThrowCollision = true;
         [Header("Optional")]
-        [CanBeNull][SerializeField] private ParticleSystemWrapper _destroyParticles;
+        [SerializeField] private ParticleSystemId _destroyParticle;
+        [SerializeField] private SoundId _destroyAudio;
         
         [Inject] private ISceneObjectsProvider _sceneObjectsProvider;
+        [Inject] private ISoundFactory _soundFactory;
+        [Inject] private IParticleSystemFactory _particleSystemFactory;
         #endregion
         
         #region Private Fields
@@ -44,9 +48,6 @@ namespace FeedTheHyppo.Gameplay.Items {
         
         #region Public Methods
         public virtual void OnSpawned() {
-            _model.SetActive(true);
-            _destroyParticles?.Clear();
-            
             SetState(ItemState.Idle);
             
             _rigidbody.linearVelocity = Vector3.zero;
@@ -99,7 +100,6 @@ namespace FeedTheHyppo.Gameplay.Items {
                     _rigidbody.isKinematic = true;
                     break;
                 case ItemState.InPlace:
-                case ItemState.Destroyed:
                     _collider.enabled = false;
                     _rigidbody.isKinematic = true;
                     break;
@@ -117,18 +117,8 @@ namespace FeedTheHyppo.Gameplay.Items {
         }
 
         protected void StartDespawning() {
-            SetState(ItemState.Destroyed);
-            
-            if (_destroyParticles) {
-                _model.SetActive(false);
-                _destroyParticles.Play(InvokeOnDespawnRequested);
-                return;
-            }
-
-            InvokeOnDespawnRequested();
-        }
-
-        private void InvokeOnDespawnRequested() {
+            _soundFactory.Spawn(_destroyAudio, transform.position, Quaternion.identity);
+            _particleSystemFactory.Spawn(_destroyParticle, transform.position, Quaternion.identity);
             onDespawnRequested?.Invoke(this);
         }
         #endregion
@@ -138,6 +128,5 @@ namespace FeedTheHyppo.Gameplay.Items {
         Idle = 0,
         InPlace = 1,
         Thrown = 2,
-        Destroyed = 3,
     }
 }

@@ -124,6 +124,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4580170142801241001, guid: 939ca973440804f46b1b5df662b339de, type: 3}
   m_PrefabInstance: {fileID: 1993087467}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &46992811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 46992812}
+  m_Layer: 0
+  m_Name: '[Sounds]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &46992812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46992811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1429496921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57015503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Architecture.Installers.GameplaySceneInstaller
   _playerSpawnRoot: {fileID: 346579602}
   _foodItemsSpawnRoot: {fileID: 312337263}
+  _audioSourcesSpawnRoot: {fileID: 46992812}
+  _particlesSpawnRoot: {fileID: 1416895573}
   _itemSpawners: {fileID: 845699955}
   _animal: {fileID: 1283787679}
   _gameUI: {fileID: 1853227189}
@@ -5351,6 +5384,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358707484}
   m_CullTransparentMesh: 1
+--- !u!1 &1416895572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416895573}
+  m_Layer: 0
+  m_Name: '[Particles]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416895573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416895572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1429496921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427764392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5503,6 +5567,8 @@ Transform:
   m_Children:
   - {fileID: 346579602}
   - {fileID: 312337263}
+  - {fileID: 46992812}
+  - {fileID: 1416895573}
   - {fileID: 845699953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

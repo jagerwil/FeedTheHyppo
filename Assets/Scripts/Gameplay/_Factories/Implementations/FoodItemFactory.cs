@@ -8,12 +8,12 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay._Factories.Implementations {
     public class FoodItemFactory : BaseGameFactory<FoodItem>, IFoodItemFactory {
-        private readonly PrefabsAddressesConfig _prefabsAddressesConfig;
+        private readonly PrefabAddressesConfig _prefabsAddressesConfig;
         
         public FoodItemFactory(IInstantiator instantiator,
             IAddressablesLoader addressablesLoader,
             FactoryPoolsConfig poolsConfig,
-            PrefabsAddressesConfig addressesConfig,
+            PrefabAddressesConfig addressesConfig,
             Transform defaultRoot)
             : base(instantiator, addressablesLoader, poolsConfig.FoodItemFactoryPool, defaultRoot) {
             _prefabsAddressesConfig = addressesConfig;

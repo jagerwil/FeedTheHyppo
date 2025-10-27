@@ -1,3 +1,5 @@
+using FeedTheHyppo.Architecture._Factories;
+using FeedTheHyppo.Architecture._Factories.Implementations;
 using FeedTheHyppo.Architecture._Services;
 using FeedTheHyppo.Architecture._Services.Implementations;
 using FeedTheHyppo.Architecture.SceneInitializers;
@@ -11,6 +13,8 @@ using FeedTheHyppo.Gameplay._Services.Implementations;
 using FeedTheHyppo.Gameplay.Animals;
 using FeedTheHyppo.Gameplay.Items;
 using FeedTheHyppo.Gameplay.UI;
+using Jagerwil.Core.Architecture.Factories;
+using Jagerwil.Core.Architecture.Factories.Implementations;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +22,8 @@ namespace FeedTheHyppo.Architecture.Installers {
     public class GameplaySceneInstaller : MonoInstaller {
         [SerializeField] private Transform _playerSpawnRoot;
         [SerializeField] private Transform _foodItemsSpawnRoot;
+        [SerializeField] private Transform _audioSourcesSpawnRoot;
+        [SerializeField] private Transform _particlesSpawnRoot;
         [Space]
         [SerializeField] private ItemSpawners _itemSpawners;
         [SerializeField] private Animal _animal;
@@ -71,6 +77,14 @@ namespace FeedTheHyppo.Architecture.Installers {
             Container.Bind<IFoodItemFactory>()
                      .To<FoodItemFactory>()
                      .AsSingle().WithArguments(_foodItemsSpawnRoot);
+            
+            Container.Bind<ISoundFactory>()
+                     .To<SoundFactory>()
+                     .AsSingle().WithArguments(_audioSourcesSpawnRoot);
+            
+            Container.Bind<IParticleSystemFactory>()
+                     .To<ParticleSystemFactory>()
+                     .AsSingle().WithArguments(_particlesSpawnRoot);
         }
 
         private void BindGameStates() {
