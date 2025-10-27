@@ -1,4 +1,6 @@
 using System;
+using FeedTheHyppo.Architecture;
+using FeedTheHyppo.Architecture._Factories;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay.Items;
@@ -12,9 +14,14 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
         [SerializeField] private LayerMask _interactionMask;
         [SerializeField] private LayerMask _throwRaycastMask;
         [SerializeField] private float _throwRaycastMaxDistance = 20f;
+        [Space]
+        [SerializeField] private SoundId _takeItemSound;
+        [SerializeField] private SoundId _throwItemSound;
         
         [Inject] private IPlayerItemInteractionProvider _interactionProvider;
         [Inject] private ISceneObjectsProvider _sceneObjectsProvider;
+        [Inject] private ISoundFactory _soundFactory;
+        
         private PlayerItemInteractionInfo _interactionInfo;
         #endregion
 
@@ -61,12 +68,14 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
                 equippedItem.Throw(throwEndPoint, _interactionInfo.ItemThrowForce);
                 
                 _interactionProvider.SetEquippedItem(null);
+                _soundFactory.Spawn(_throwItemSound);
                 return;
             }
 
             if (lookedAtItem != null) {
                 lookedAtItem.TakeFromPlace(_equippedItemRoot, _collider);
                 _interactionProvider.SetEquippedItem(lookedAtItem);
+                _soundFactory.Spawn(_takeItemSound);
             }
         }
         #endregion

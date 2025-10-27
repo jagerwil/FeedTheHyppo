@@ -90,7 +90,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jagerwil.Core.Utils.Wrappers.AudioSourceWrapper
   _audioSource: {fileID: 2075262125707345600}
+  _despawnWhenFinished: 1

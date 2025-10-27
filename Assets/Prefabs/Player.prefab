@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e70af26707f734c9f23a30ed7749e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Player.PlayerMovement
+  _walkingSound: 4
+  _intervalBetweenSounds: 0.4
 --- !u!114 &7067744670669518790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +106,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 896
   _throwRaycastMaxDistance: 20
+  _takeItemSound: 2
+  _throwItemSound: 3
 --- !u!114 &778528009359896833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +410,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 79c485d7921fcee45866ac3a4baeef0c, type: 3}
       propertyPath: m_Name
       value: Amogus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79c485d7921fcee45866ac3a4baeef0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

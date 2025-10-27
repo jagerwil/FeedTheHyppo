@@ -21,7 +21,9 @@ namespace FeedTheHyppo.Gameplay.Windows {
         [SerializeField] private GameObject _maxScoreReachedText;
         [Space]
         [SerializeField] private Button _restartButton;
+        [Space]
         [SerializeField] private SoundId _gameOverSound;
+        [SerializeField] private SoundId _buttonSound;
         
         [Inject] private IScoreService _scoreService;
         [Inject] private ISoundFactory _soundFactory;
@@ -69,6 +71,7 @@ namespace FeedTheHyppo.Gameplay.Windows {
         
         #region Private methods
         private void RestartButtonPressed() {
+            _soundFactory.Spawn(_buttonSound);
             _restartButtonPressedCallback?.Invoke();
         }
         #endregion

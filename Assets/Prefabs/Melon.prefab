@@ -52,7 +52,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 6996137653270705069}
   _despawnOnThrowCollision: 1
   _destroyParticle: 1
-  _destroyAudio: {fileID: 8300000, guid: 0466b03d99150fe4c8372e206a5ba969, type: 3}
+  _destroyAudio: 1
 --- !u!54 &6996137653270705069
 Rigidbody:
   m_ObjectHideFlags: 0

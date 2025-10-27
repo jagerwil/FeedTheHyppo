@@ -16,3 +16,51 @@ MonoBehaviour:
     <LowpassCutoffFrequency>k__BackingField: 1800
     <LowpassNormalFrequency>k__BackingField: 22000
     <ChangeFrequencyDuration>k__BackingField: 0.5
+  <SoundsInfo>k__BackingField:
+    _sounds:
+    - <Id>k__BackingField: 2
+      _clips:
+      - {fileID: 8300000, guid: 2d9212c39c7b8c944a429884e26a982a, type: 3}
+      <Volume>k__BackingField: 0.45
+      <HasDistance>k__BackingField: 0
+      <MaxDistance>k__BackingField: 0
+    - <Id>k__BackingField: 3
+      _clips:
+      - {fileID: 8300000, guid: d8135f8699a1fa14c838f71c62b66359, type: 3}
+      <Volume>k__BackingField: 0.45
+      <HasDistance>k__BackingField: 0
+      <MaxDistance>k__BackingField: 0
+    - <Id>k__BackingField: 4
+      _clips:
+      - {fileID: 8300000, guid: 0feb693c0fe091640b9c40665ad65949, type: 3}
+      - {fileID: 8300000, guid: 7280a3f1c7b925e4e8af19859045edaa, type: 3}
+      - {fileID: 8300000, guid: 1dbd84247f4dfdf48932f48f72832ffb, type: 3}
+      - {fileID: 8300000, guid: 9fad9b246493ddc4ea55e15dd107f036, type: 3}
+      <Volume>k__BackingField: 1
+      <HasDistance>k__BackingField: 0
+      <MaxDistance>k__BackingField: 0
+    - <Id>k__BackingField: 1
+      _clips:
+      - {fileID: 8300000, guid: 0466b03d99150fe4c8372e206a5ba969, type: 3}
+      <Volume>k__BackingField: 0.8
+      <HasDistance>k__BackingField: 1
+      <MaxDistance>k__BackingField: 30
+    - <Id>k__BackingField: 5
+      _clips:
+      - {fileID: 8300000, guid: 25f65df8ec1de7348acf7c09ff01c160, type: 3}
+      - {fileID: 8300000, guid: b7b93d51e133f9b4f8a8bf3068f0b444, type: 3}
+      <Volume>k__BackingField: 1
+      <HasDistance>k__BackingField: 1
+      <MaxDistance>k__BackingField: 30
+    - <Id>k__BackingField: 100
+      _clips:
+      - {fileID: 8300000, guid: d45a76b684d7dcb41b16b864a1e1804d, type: 3}
+      <Volume>k__BackingField: 0.3
+      <HasDistance>k__BackingField: 0
+      <MaxDistance>k__BackingField: 0
+    - <Id>k__BackingField: 101
+      _clips:
+      - {fileID: 8300000, guid: d1fca301a9c490140a95d1f4775abbf1, type: 3}
+      <Volume>k__BackingField: 0.45
+      <HasDistance>k__BackingField: 0
+      <MaxDistance>k__BackingField: 0
