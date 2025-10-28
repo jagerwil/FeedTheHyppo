@@ -1,6 +1,7 @@
 using System;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Providers;
+using FeedTheHyppo.Gameplay.Items;
 using FeedTheHyppo.Gameplay.PlayerComponents;
 using JetBrains.Annotations;
 using R3;
@@ -10,16 +11,17 @@ using Zenject;
 namespace FeedTheHyppo.Gameplay.Animals { 
     public class AnimalMouthController : MonoBehaviour {
         [Inject] private IPlayerProvider _playerProvider;
+        [Inject] private IPlayerItemInteractionProvider _playerItemProvider;
         [Inject] private GameplayConfig _gameplayConfig;
 
         private readonly CompositeDisposable _disposables = new();
-        private readonly ReactiveProperty<bool> _isPlayerClose = new();
+        private readonly ReactiveProperty<bool> _isMouthOpened = new();
 
         private AnimalFoodReceiver _foodReceiver;
         [CanBeNull]
         private Transform _playerTransform;
         
-        public ReadOnlyReactiveProperty<bool> IsPlayerClose => _isPlayerClose; 
+        public ReadOnlyReactiveProperty<bool> IsMouthOpened => _isMouthOpened; 
 
         private void Start() {
             _playerProvider.Player.Subscribe(PlayerChanged).AddTo(_disposables);
@@ -31,15 +33,18 @@ namespace FeedTheHyppo.Gameplay.Animals {
 
         private void Update() {
             if (_playerTransform == null) {
-                SetIsPlayerClose(false);
+                SetIsMouthOpened(false);
                 return;
             }
             
             var sqrDistanceToPlayer = Vector3.SqrMagnitude(transform.position - _playerTransform.position);
             var targetDistance = _gameplayConfig.AnimalInfo.AnimalDetectPlayerDistance;
             
-            var shouldOpenMouth = sqrDistanceToPlayer < targetDistance * targetDistance;
-            SetIsPlayerClose(shouldOpenMouth);
+            var isCloseToPlayer = sqrDistanceToPlayer < targetDistance * targetDistance;
+            
+            var equippedItem = _playerItemProvider.EquippedItem.CurrentValue;
+            var hasFood = equippedItem != null && equippedItem is FoodItem;
+            SetIsMouthOpened(isCloseToPlayer && hasFood);
         }
 
         public void InjectComponents(AnimalFoodReceiver foodReceiver) {
@@ -47,15 +52,15 @@ namespace FeedTheHyppo.Gameplay.Animals {
         }
 
         public void Initialize() {
-            SetIsPlayerClose(false, force: true);
+            SetIsMouthOpened(false, force: true);
         }
 
-        private void SetIsPlayerClose(bool isMouthOpened, bool force = false) {
-            if (_isPlayerClose.CurrentValue == isMouthOpened && !force) {
+        private void SetIsMouthOpened(bool isMouthOpened, bool force = false) {
+            if (_isMouthOpened.CurrentValue == isMouthOpened && !force) {
                 return;
             }
 
-            _isPlayerClose.Value = isMouthOpened;
+            _isMouthOpened.Value = isMouthOpened;
             _foodReceiver.SetActive(isMouthOpened);
         }
 

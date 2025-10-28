@@ -3,7 +3,6 @@ using FeedTheHyppo.Architecture._Factories;
 using FeedTheHyppo.Architecture._Services;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Factories;
-using Jagerwil.Core.Architecture.Factories;
 using Jagerwil.Core.Architecture.StateMachine;
 using Jagerwil.Core.Services;
 using UnityEngine;

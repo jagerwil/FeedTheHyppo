@@ -20,7 +20,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
 
         public void InjectComponents(AnimalMouthController mouthController, AnimalFoodReceiver foodReceiver) {
             _foodReceiver = foodReceiver;
-            mouthController.IsPlayerClose
+            mouthController.IsMouthOpened
                            .Subscribe(IsPlayerClose)
                            .AddTo(_disposables);
 

@@ -13,8 +13,6 @@ using FeedTheHyppo.Gameplay._Services.Implementations;
 using FeedTheHyppo.Gameplay.Animals;
 using FeedTheHyppo.Gameplay.Items;
 using FeedTheHyppo.Gameplay.UI;
-using Jagerwil.Core.Architecture.Factories;
-using Jagerwil.Core.Architecture.Factories.Implementations;
 using UnityEngine;
 using Zenject;
 
