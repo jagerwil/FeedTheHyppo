@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Player.PlayerLookAround
   _verticalAngleRestraint: 70
+  _rotationSmoothFactor: 35
 --- !u!114 &8727119518649123055
 MonoBehaviour:
   m_ObjectHideFlags: 0

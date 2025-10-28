@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace FeedTheHyppo.Gameplay.PlayerComponents {
     public class PlayerLookAround : MonoBehaviour {
         [SerializeField] private float _verticalAngleRestraint = 70f;
+        [SerializeField] private float _rotationSmoothFactor = 5f;
         
         private Rigidbody _rigidbody;
         private Camera _camera;
 
-        private float _horizontalRotation;
-        private float _verticalRotation;
+        private Quaternion _targetCameraLocalRotation;
+        private Quaternion _targetPlayerRotation;
 
         public void InjectComponents(Rigidbody rb, Camera cam) {
             _rigidbody = rb;
@@ -17,39 +19,43 @@ namespace FeedTheHyppo.Gameplay.PlayerComponents {
 
         public void Initialize() {
             _camera.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            _horizontalRotation = 0f;
-            _verticalRotation = 0f;
+            
+            _targetCameraLocalRotation = _camera.transform.localRotation;
+            _targetPlayerRotation = _rigidbody.rotation;
+        }
+
+        private void Update() {
+            var deltaTime = Time.deltaTime;
+            
+            var smoothFactor = _rotationSmoothFactor * deltaTime;
+            RotateCamera(smoothFactor);
+            RotatePlayer(smoothFactor);
         }
 
         public void SetDeltaLookVector(Vector2 deltaLookVector) {
-            _horizontalRotation += deltaLookVector.x;
-            _verticalRotation += -1f * deltaLookVector.y;
-            
-            RotateCamera();
-            RotatePlayer();
-        }
+            _targetPlayerRotation *= Quaternion.AngleAxis(deltaLookVector.x, Vector3.up);
 
-        private void RotateCamera() {
-            var cameraAngle = _camera.transform.eulerAngles;
-            cameraAngle.x += _verticalRotation;
-            if (cameraAngle.x > 180f) {
-                cameraAngle.x -= 360f;
+            var cameraRotation = _targetCameraLocalRotation.eulerAngles;
+            cameraRotation.x += -1f * deltaLookVector.y;
+            if (cameraRotation.x > 180f) {
+                cameraRotation.x -= 360f;
             }
             
-            cameraAngle.x = Mathf.Clamp(cameraAngle.x, -1f * _verticalAngleRestraint, _verticalAngleRestraint);
-
-            _camera.transform.eulerAngles = cameraAngle;
-            _verticalRotation = 0f;
+            cameraRotation.x = Mathf.Clamp(cameraRotation.x, -1f * _verticalAngleRestraint, _verticalAngleRestraint);
+            _targetCameraLocalRotation = Quaternion.Euler(cameraRotation);
         }
 
-        private void RotatePlayer() {
-            var rotation = _rigidbody.rotation.eulerAngles;
-            rotation.y += _horizontalRotation;
+        private void RotateCamera(float smoothFactor) {
+            var cameraLocalRotation = _camera.transform.localRotation;
+            var cameraRotation = Quaternion.Lerp(cameraLocalRotation, _targetCameraLocalRotation, smoothFactor);
+            _camera.transform.localRotation = cameraRotation;
+        }
 
-            _rigidbody.MoveRotation(Quaternion.Euler(rotation));
-            //transform.eulerAngles = rotation;
-            
-            _horizontalRotation = 0f;
+        private void RotatePlayer(float smoothFactor) {
+            var playerCurrentRotation = _rigidbody.rotation;
+            var playerRotation = Quaternion.Lerp(playerCurrentRotation, _targetPlayerRotation, smoothFactor);
+
+            _rigidbody.MoveRotation(playerRotation);
         }
     }
 }
