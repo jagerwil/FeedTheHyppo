@@ -6,6 +6,8 @@ namespace FeedTheHyppo.Gameplay.Animals {
     public class AnimalFoodReceiver : MonoBehaviour {
         [SerializeField] private Collider _collider;
 
+        public event Action onFoodReceived;
+
         public void SetActive(bool isActive) {
             _collider.enabled = isActive;
         }
@@ -17,6 +19,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
             }
             
             food.IncreaseFood();
+            onFoodReceived?.Invoke();
         }
     }
 }

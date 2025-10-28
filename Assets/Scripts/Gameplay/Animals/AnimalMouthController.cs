@@ -1,3 +1,4 @@
+using System;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Providers;
 using FeedTheHyppo.Gameplay.PlayerComponents;
@@ -8,17 +9,17 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay.Animals { 
     public class AnimalMouthController : MonoBehaviour {
-        //[SerializeField] private GameObject _mouthRoot;
-        
         [Inject] private IPlayerProvider _playerProvider;
         [Inject] private GameplayConfig _gameplayConfig;
 
         private readonly CompositeDisposable _disposables = new();
+        private readonly ReactiveProperty<bool> _isPlayerClose = new();
 
         private AnimalFoodReceiver _foodReceiver;
         [CanBeNull]
         private Transform _playerTransform;
-        private bool _isMouthOpened = false;
+        
+        public ReadOnlyReactiveProperty<bool> IsPlayerClose => _isPlayerClose; 
 
         private void Start() {
             _playerProvider.Player.Subscribe(PlayerChanged).AddTo(_disposables);
@@ -30,7 +31,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
 
         private void Update() {
             if (_playerTransform == null) {
-                SetIsMouthOpened(false);
+                SetIsPlayerClose(false);
                 return;
             }
             
@@ -38,7 +39,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
             var targetDistance = _gameplayConfig.AnimalInfo.AnimalDetectPlayerDistance;
             
             var shouldOpenMouth = sqrDistanceToPlayer < targetDistance * targetDistance;
-            SetIsMouthOpened(shouldOpenMouth);
+            SetIsPlayerClose(shouldOpenMouth);
         }
 
         public void InjectComponents(AnimalFoodReceiver foodReceiver) {
@@ -46,18 +47,16 @@ namespace FeedTheHyppo.Gameplay.Animals {
         }
 
         public void Initialize() {
-            SetIsMouthOpened(false, force: true);
+            SetIsPlayerClose(false, force: true);
         }
 
-        private void SetIsMouthOpened(bool isMouthOpened, bool force = false) {
-            if (_isMouthOpened == isMouthOpened && !force) {
+        private void SetIsPlayerClose(bool isMouthOpened, bool force = false) {
+            if (_isPlayerClose.CurrentValue == isMouthOpened && !force) {
                 return;
             }
 
-            _isMouthOpened = isMouthOpened;
-
-            //_mouthRoot.SetActive(_isMouthOpened);
-            _foodReceiver.SetActive(_isMouthOpened);
+            _isPlayerClose.Value = isMouthOpened;
+            _foodReceiver.SetActive(isMouthOpened);
         }
 
         private void PlayerChanged(Player player) {
