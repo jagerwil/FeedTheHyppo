@@ -3763,7 +3763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845699953}
   - component: {fileID: 845699955}
-  - component: {fileID: 845699954}
+  - component: {fileID: 845699956}
   m_Layer: 0
   m_Name: FoodSpawners
   m_TagString: Untagged
@@ -3789,23 +3789,6 @@ Transform:
   - {fileID: 239974477}
   m_Father: {fileID: 1429496921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &845699954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845699952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3363ac00a05814d8ee31991c33321f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jagerwil.Core.Utils.Spawning.SeparateSpawnPoints
-  _spawnPoints:
-  - {fileID: 1476875735}
-  - {fileID: 1154169123}
-  - {fileID: 239974478}
-  _ignoreFirstSpawnDelay: 1
 --- !u!114 &845699955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3818,7 +3801,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec5f18a92430a04cbb410baca7f45b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Gameplay.Items.FoodSpawners
-  _spawnPoints: {fileID: 845699954}
+  _spawnPoints: {fileID: 845699956}
+--- !u!114 &845699956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845699952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af6eff6dcca50043a7240e805d304ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Jagerwil.Core.Utils.Spawning.RandomSpawnPoints
+  _spawnPoints:
+  - {fileID: 1476875735}
+  - {fileID: 1154169123}
+  - {fileID: 239974478}
 --- !u!1 &888312077
 GameObject:
   m_ObjectHideFlags: 0

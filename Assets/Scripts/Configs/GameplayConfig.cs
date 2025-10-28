@@ -1,4 +1,5 @@
 using System;
+using Jagerwil.Core.Utils.Spawning;
 using UnityEngine;
 
 namespace FeedTheHyppo.Configs {
@@ -17,7 +18,8 @@ namespace FeedTheHyppo.Configs {
     [Serializable]
     public class FoodInfo {
         [field: SerializeField] public float MelonFoodIncrease { get; private set; } = 10f;
-        [field: SerializeField] public float MelonSpawnInterval { get; private set; } = 2f;
+        [field: SerializeField] public float DelayBeforeSpawning { get; private set; }
+        [field: SerializeField] public bool IgnoreFirstSpawnDelay { get; private set; } = true;
     }
 
     [Serializable]

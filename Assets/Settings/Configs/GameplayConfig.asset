@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedTheHyppo.Configs.GameplayConfig
   <FoodInfo>k__BackingField:
     <MelonFoodIncrease>k__BackingField: 15
-    <MelonSpawnInterval>k__BackingField: 2
+    <DelayBeforeSpawning>k__BackingField: 0
+    <IgnoreFirstSpawnDelay>k__BackingField: 1
   <AnimalInfo>k__BackingField:
     <AnimalDetectPlayerDistance>k__BackingField: 5
   <FoodServiceInfo>k__BackingField:

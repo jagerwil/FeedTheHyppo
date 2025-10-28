@@ -1,4 +1,3 @@
-using System;
 using FeedTheHyppo.Configs;
 using FeedTheHyppo.Gameplay._Factories;
 using Jagerwil.Core.Utils.Spawning;
@@ -8,7 +7,7 @@ using Zenject;
 namespace FeedTheHyppo.Gameplay.Items {
     public class ItemSpawners : MonoBehaviour {
         #region Serialized & Injected Fields
-        [SerializeField] private SeparateSpawnPoints _spawnPoints;
+        [SerializeField] private RandomSpawnPoints _spawnPoints;
 
         [Inject] private IFoodItemFactory _foodItemsFactory;
         [Inject] private GameplayConfig _gameplayConfig;
@@ -22,7 +21,8 @@ namespace FeedTheHyppo.Gameplay.Items {
 
         #region Public Methods
         public void Initialize() {
-            _spawnPoints.Initialize(_gameplayConfig.FoodInfo.MelonSpawnInterval, SpawnFood);
+            var foodInfo = _gameplayConfig.FoodInfo;
+            _spawnPoints.Initialize(foodInfo.DelayBeforeSpawning, foodInfo.IgnoreFirstSpawnDelay, SpawnFood);
 
             BaseItem.onItemStateChanged -= ItemStateChanged;
             BaseItem.onItemStateChanged += ItemStateChanged;
@@ -33,6 +33,10 @@ namespace FeedTheHyppo.Gameplay.Items {
         private void ItemStateChanged(BaseItem item, ItemState state) {
             if (state == ItemState.InPlace) {
                 _spawnPoints.TakeObject(item.gameObject);
+            }
+
+            if (state == ItemState.Despawned) {
+                _spawnPoints.TrySpawnObject();
             }
         }
 
