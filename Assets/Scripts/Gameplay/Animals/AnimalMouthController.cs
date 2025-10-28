@@ -10,6 +10,8 @@ using Zenject;
 
 namespace FeedTheHyppo.Gameplay.Animals { 
     public class AnimalMouthController : MonoBehaviour {
+        [SerializeField] private float _closeMouthDelay = 1f;
+        
         [Inject] private IPlayerProvider _playerProvider;
         [Inject] private IPlayerItemInteractionProvider _playerItemProvider;
         [Inject] private GameplayConfig _gameplayConfig;
@@ -20,6 +22,9 @@ namespace FeedTheHyppo.Gameplay.Animals {
         private AnimalFoodReceiver _foodReceiver;
         [CanBeNull]
         private Transform _playerTransform;
+
+        private bool _wasMouthOpened;
+        private float _timeUntilClosingMouth;
         
         public ReadOnlyReactiveProperty<bool> IsMouthOpened => _isMouthOpened; 
 
@@ -52,11 +57,24 @@ namespace FeedTheHyppo.Gameplay.Animals {
         }
 
         public void Initialize() {
-            SetIsMouthOpened(false, force: true);
+            SetIsMouthOpened(false);
         }
 
-        private void SetIsMouthOpened(bool isMouthOpened, bool force = false) {
-            if (_isMouthOpened.CurrentValue == isMouthOpened && !force) {
+        private void SetIsMouthOpened(bool isMouthOpened) {
+            if (!isMouthOpened) {
+                if (_wasMouthOpened) {
+                    _timeUntilClosingMouth = _closeMouthDelay;
+                    _wasMouthOpened = false;
+                }
+
+                if (_timeUntilClosingMouth > 0f) {
+                    _timeUntilClosingMouth -= Time.deltaTime;
+                    return;
+                }
+            }
+            
+            _wasMouthOpened = _isMouthOpened.CurrentValue;
+            if (_isMouthOpened.CurrentValue == isMouthOpened) {
                 return;
             }
 

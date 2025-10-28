@@ -8447,6 +8447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1303824920699327316, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
+      propertyPath: _closeMouthDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3706737005967916144, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -8490,6 +8494,22 @@ PrefabInstance:
     - target: {fileID: 5275000504337931694, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
       propertyPath: m_Name
       value: Hippo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048649900606455293, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227776932355973827, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227776932355973827, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.814
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231112927065388972, guid: 054bc9bdac4c37047ba3a264fd12130e, type: 3}
+      propertyPath: _chewingParticles
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

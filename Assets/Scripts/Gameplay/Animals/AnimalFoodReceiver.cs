@@ -9,7 +9,9 @@ namespace FeedTheHyppo.Gameplay.Animals {
         public event Action onFoodReceived;
 
         public void SetActive(bool isActive) {
-            _collider.enabled = isActive;
+            if (_collider.enabled != isActive) {
+                _collider.enabled = isActive;
+            }
         }
         
         private void OnTriggerEnter(Collider other) {

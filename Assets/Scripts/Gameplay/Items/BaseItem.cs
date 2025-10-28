@@ -50,9 +50,6 @@ namespace FeedTheHyppo.Gameplay.Items {
         public virtual void OnSpawned() {
             SetState(ItemState.Idle);
             
-            _rigidbody.linearVelocity = Vector3.zero;
-            _rigidbody.angularVelocity = Vector3.zero;
-            
             onItemSpawned?.Invoke(this);
         }
 
@@ -99,6 +96,7 @@ namespace FeedTheHyppo.Gameplay.Items {
                     _collider.enabled = true;
                     _rigidbody.isKinematic = true;
                     break;
+                case ItemState.Despawned:
                 case ItemState.InPlace:
                     _collider.enabled = false;
                     _rigidbody.isKinematic = true;
@@ -117,6 +115,11 @@ namespace FeedTheHyppo.Gameplay.Items {
         }
 
         protected void StartDespawning() {
+            if (State == ItemState.Despawned) {
+                return;
+            }
+            
+            SetState(ItemState.Despawned);
             _soundFactory.Spawn(_destroyAudio, transform.position, Quaternion.identity);
             _particleSystemFactory.Spawn(_destroyParticle, transform.position, Quaternion.identity);
             onDespawnRequested?.Invoke(this);
@@ -128,5 +131,6 @@ namespace FeedTheHyppo.Gameplay.Items {
         Idle = 0,
         InPlace = 1,
         Thrown = 2,
+        Despawned = 3,
     }
 }

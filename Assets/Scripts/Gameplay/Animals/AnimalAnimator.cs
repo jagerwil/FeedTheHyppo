@@ -1,4 +1,3 @@
-using System;
 using FeedTheHyppo.Architecture;
 using FeedTheHyppo.Architecture._Factories;
 using R3;
@@ -12,8 +11,10 @@ namespace FeedTheHyppo.Gameplay.Animals {
         [SerializeField] private string _onStartedEatingTriggerName = "OnStartedEating";
         [Space]
         [SerializeField] private SoundId _chewingSound;
+        [SerializeField] private ParticleSystemId _chewingParticles;
 
         [Inject] private ISoundFactory _soundFactory;
+        [Inject] private IParticleSystemFactory _particlesFactory;
         
         private readonly CompositeDisposable _disposables = new();
         private AnimalFoodReceiver _foodReceiver;
@@ -29,6 +30,7 @@ namespace FeedTheHyppo.Gameplay.Animals {
 
         public void PlayChewingSound() {
             _soundFactory.Spawn(_chewingSound, _foodReceiver.transform);
+            _particlesFactory.Spawn(_chewingParticles, _foodReceiver.transform);
         }
 
         private void IsPlayerClose(bool isMouthOpened) {
